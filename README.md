@@ -3,6 +3,7 @@
     <img alt="SmartStitch.Logo" width="200" height="200" src="https://github.com/MechTechnology/SmartStitch/raw/dev/assets/SmartStitchLogo.png">
   </a>
   <h1>SmartStitch-DMG-Installer</h1>
+  
 1. Download and open `SmartStitch.dmg`.
 2. Drag `SmartStitch.app` to your Applications folder.
 3. Double-click `SmartStitch.app` to run it.
