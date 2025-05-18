@@ -10,12 +10,9 @@ class GlobalLogger:
     @classmethod
     def configureGlobalLogger(self):
         """Initializes and Configures Logging Service"""
-        # Determine log directory based on environment
-        if getattr(sys, 'frozen', False):  # Running as a PyInstaller bundle
-            # Use ~/Library/Logs/SmartStitch for bundled app
+        if getattr(sys, 'frozen', False):  
             log_dir = os.path.expanduser('~/Library/Logs/SmartStitch')
         else:
-            # Use LOG_REL_DIR for development
             log_dir = LOG_REL_DIR
 
         if not os.path.exists(log_dir):
@@ -28,7 +25,6 @@ class GlobalLogger:
         log_format = '%(levelname)s:%(asctime)s:%(message)s'
         logging.basicConfig(format=log_format, filename=log_filename, level=log_level)
         logging.debug('GlobalLogger:Logger Initialized')
-        # Remove PIL logging from polluting the Debug Level
         pil_logger = logging.getLogger('PIL')
         pil_logger.setLevel(logging.INFO)
 
