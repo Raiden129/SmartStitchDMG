@@ -4,8 +4,12 @@
   </a>
   <h1>SmartStitch-DMG-Installer</h1>
   
-1. Download and open `SmartStitch.dmg`.
-2. Drag `SmartStitch.app` to your Applications folder.
-3. Double-click `SmartStitch.app` to run it.
+# SmartStitch‑DMG‑Installer
+
+1. Download and open `SmartStitch.dmg`.  
+2. Drag `SmartStitch.app` to your Applications folder.  
+3. Double‑click `SmartStitch.app` to run it.  
 4. If you see “SmartStitch can’t be opened because Apple cannot check it for malicious software”:
-   - Go to **open settings > Security & Privacy > scroll down and click “Open Anyway” next to the SmartStitch message.
+   - Go to **System Settings > Security & Privacy** (or **System Preferences > Security & Privacy** on older macOS).  
+   - Scroll down and click **Open Anyway** next to the SmartStitch message.
+
