@@ -1,16 +1,20 @@
 import json
 import os
+import sys
 
 from core.utils.errors import ProfileException
-
 from ..models import AppProfiles, AppSettings
 from ..services import logFunc
 from ..utils.constants import SETTINGS_REL_DIR
 
-
 class SettingsHandler:
     def __init__(self):
-        self.settings_file = os.path.join(SETTINGS_REL_DIR, 'settings.json')
+        # Determine settings directory based on environment
+        if getattr(sys, 'frozen', False):  # Running as a PyInstaller bundle
+            self.settings_dir = os.path.expanduser('~/Library/Application Support/SmartStitch')
+        else:
+            self.settings_dir = SETTINGS_REL_DIR
+        self.settings_file = os.path.join(self.settings_dir, 'settings.json')
         self.current_profiles = self.load_all()
         self.current_settings = self.load_current_settings()
 
@@ -104,8 +108,8 @@ class SettingsHandler:
 
     def save_all(self, profiles: AppProfiles = None):
         """Saves settings profile pointers from a json file."""
-        if not os.path.exists(SETTINGS_REL_DIR):
-            os.makedirs(SETTINGS_REL_DIR)
+        if not os.path.exists(self.settings_dir):
+            os.makedirs(self.settings_dir, exist_ok=True)
         if not (profiles):
             profiles = AppProfiles()
         with open(self.settings_file, "w") as f:
