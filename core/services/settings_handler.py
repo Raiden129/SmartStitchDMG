@@ -9,8 +9,7 @@ from ..utils.constants import SETTINGS_REL_DIR
 
 class SettingsHandler:
     def __init__(self):
-        # Determine settings directory based on environment
-        if getattr(sys, 'frozen', False):  # Running as a PyInstaller bundle
+        if getattr(sys, 'frozen', False):
             self.settings_dir = os.path.expanduser('~/Library/Application Support/SmartStitch')
         else:
             self.settings_dir = SETTINGS_REL_DIR
@@ -48,7 +47,7 @@ class SettingsHandler:
         self.save_all(self.current_profiles)
         return settings
 
-    # Profile Handling Logic
+    
     def get_current_index(self) -> int:
         return self.current_profiles.current
 
