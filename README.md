@@ -17,7 +17,7 @@
 
 ## Windows (EXE)
 
-1. Download `SmartStitchInstaller.exe` from the [releases page](https://github.com/MechTechnology/SmartStitch/releases).
+1. Download `SmartStitchInstaller.exe` from the [releases page]((https://github.com/Raiden129/SmartStitchDMG/releases)).
 2. Double‑click `SmartStitchInstaller.exe` to launch the installer.
 3. Follow the on‑screen prompts:
 
