@@ -1,9 +1,8 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-
 block_cipher = None
 
-additional_files = [('assets/SmartStitchLogo.ico', 'assets/SmartStitchLogo.ico', 'DATA'), ('gui/layout.ui', 'gui/layout.ui', 'DATA')]
+additional_files = [('gui/layout.ui', 'gui/layout.ui', 'DATA')]
 
 a = Analysis(
     ['SmartStitchGUI.py'],
@@ -38,7 +37,6 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='assets/SmartStitchLogo.ico',
 )
 coll = COLLECT(
     exe,
@@ -49,4 +47,10 @@ coll = COLLECT(
     upx=True,
     upx_exclude=[],
     name='SmartStitch',
+)
+app = BUNDLE(
+    coll,
+    name='SmartStitch.app',
+    icon='/Users/raiden/Downloads/SmartStitch/assets/SmartStitchLogo.ico',
+    bundle_identifier='com.raiden.smartstitch'
 )
