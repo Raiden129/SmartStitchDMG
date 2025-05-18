@@ -4,8 +4,6 @@
   </a>
   <h1>SmartStitch-DMG-Installer</h1>
   
-# SmartStitch‑DMG‑Installer
-
 1. Download and open `SmartStitch.dmg`.  
 2. Drag `SmartStitch.app` to your Applications folder.  
 3. Double‑click `SmartStitch.app` to run it.  
