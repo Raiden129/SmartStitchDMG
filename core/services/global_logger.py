@@ -1,26 +1,34 @@
 import functools
 import logging
 import os
+import sys
 from datetime import datetime
 
 from ..utils.constants import LOG_REL_DIR
-
 
 class GlobalLogger:
     @classmethod
     def configureGlobalLogger(self):
         """Initializes and Configures Logging Service"""
-        if not os.path.exists(LOG_REL_DIR):
-            os.makedirs(LOG_REL_DIR)
+        # Determine log directory based on environment
+        if getattr(sys, 'frozen', False):  # Running as a PyInstaller bundle
+            # Use ~/Library/Logs/SmartStitch for bundled app
+            log_dir = os.path.expanduser('~/Library/Logs/SmartStitch')
+        else:
+            # Use LOG_REL_DIR for development
+            log_dir = LOG_REL_DIR
+
+        if not os.path.exists(log_dir):
+            os.makedirs(log_dir, exist_ok=True)
         current_date = datetime.now()
         log_filename = current_date.strftime('log-%Y-%m-%d.log')
-        log_filename = os.path.join(LOG_REL_DIR, log_filename)
+        log_filename = os.path.join(log_dir, log_filename)
 
         log_level = logging.DEBUG
         log_format = '%(levelname)s:%(asctime)s:%(message)s'
         logging.basicConfig(format=log_format, filename=log_filename, level=log_level)
         logging.debug('GlobalLogger:Logger Initialized')
-        # Removes the pil logging from polluting the Debug Level.
+        # Remove PIL logging from polluting the Debug Level
         pil_logger = logging.getLogger('PIL')
         pil_logger.setLevel(logging.INFO)
 
@@ -33,7 +41,6 @@ class GlobalLogger:
     def log_debug(self, message, caller='GlobalLogger', *args, **kwargs):
         log = f'{caller}:{message}'
         logging.debug(log, *args, **kwargs)
-
 
 def logFunc(func=None, inclass=False):
     if func is None:
@@ -59,6 +66,5 @@ def logFunc(func=None, inclass=False):
             raise e
 
     return wrapper
-
 
 GlobalLogger.configureGlobalLogger()
